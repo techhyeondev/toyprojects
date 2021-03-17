@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html문서 제목</title>
+
+    <style>
+        .area{
+            display: inline-block; /* 네모 옆으로 */ 
+            width : 100px;
+            height : 100px;
+            border : 5px solid #fff;
+            box-sizing: border-box;
+			border-radius: 100px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 30px;
+            color : #fff;
+            text-shadow : 0px 0px 3px rgba(73, 57, 0, .8);
+            font-weight:bold;
+        }
+   
+        .area2{
+            display: inline-block;
+            width : 100px;
+            height : 100px;
+            font-size: 50px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="area" id="area1"></div>
+    <div class="area" id="area2"></div>
+    <div class="area" id="area3"></div>
+    <div class="area" id="area4"></div>
+    <div class="area" id="area5"></div>
+    <div class="area" id="area6"></div>
+    <div class="area2">+</div>
+    <div class="area" id="area7"></div>
+    <br><br>
+
+    <button type="button" id="btn">로또 시작~!</button>
+    
+    <script>
+        document.getElementById("btn").onclick = function(){
+
+            var inputArr = new Array();
+            var arr = document.getElementsByClassName("area");
+            var tempArr = new Array();
+            var flag = true;
+            var count=0;
+               
+            while(count < 7){       
+                var num;
+                num = parseInt(Math.random()*45)+1;
+                console.log(num);
+
+                for(var i=0; i<count; i++){
+                    if(tempArr[i] == num) {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if(flag){
+                    tempArr[count] = num;
+                    arr[count].innerHTML = tempArr[count];
+                    if(tempArr[count]<11) arr[count].style.backgroundColor="#fbc400";
+                    else if(tempArr[count]<21) {arr[count].style.backgroundColor="#69c8f2";}
+                    else if(tempArr[count]<31) {arr[count].style.backgroundColor="#ff7272";}
+                    else if(tempArr[count]<41) {arr[count].style.backgroundColor="#aaa";}
+                    else if(tempArr[count]<46) {arr[count].style.backgroundColor="#b0d840";}
+                    count++;
+                 }
+                console.log(flag);
+                flag = true;
+                
+            }
+
+
+        }
+    </script>
+</body>
+</html>
